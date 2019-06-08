@@ -22,12 +22,10 @@ const ProfileBlock = ({logIn, logOut, isLogged}) => {
             {
                 isLogged
                     ? <Button color='primary'
-                              outline
                               onClick={logOut}>
                         log out
                     </Button>
                     : <Button color='primary'
-                              outline
                               onClick={logIn}>
                         log in
                     </Button>
