@@ -1,5 +1,6 @@
 const express = require('express');
 const axios = require('axios');
+var cors = require('cors')
 require('dotenv').config();
 const bodyParser = require('body-parser');
 const db = require('./db')
@@ -15,6 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+app.use(cors())
 
 
 app.listen(port, () => {
@@ -66,8 +68,15 @@ app.get('/users/:id', (req, res) => {
 
 
 
-app.post('/users/:id/info', (req, res) => {
-
+app.post('/users/:id', async (req, res) => {
+  const userId = req.params.id
+  var result = await DB.update({_id: userId}, req.body)
+  console.log(result)
+  // if (result.length===0) {
+  //   res.sendStatus(200)
+  // } else {
+  //   res.sendStatus(403) // user exists
+  // }
 });
 
 

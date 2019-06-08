@@ -55,9 +55,9 @@ class DB {
 
 
 
-
-  change(collection, id) {
-
+  async update(collection, data1, data2) {
+    const CardModel = mongoose.model(collection, this[collection])
+    return await CardModel.update(data1, data2);
   }
 
 
