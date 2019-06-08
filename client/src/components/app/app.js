@@ -18,9 +18,6 @@ export default class App extends Component {
 
     componentDidMount() {
         this.onLogin();
-        window.addEventListener('storage', function (e) {
-            console.log('Woohoo, someone changed my localstorage va another tab/window!');
-        });
     }
 
     logIn = () => {
