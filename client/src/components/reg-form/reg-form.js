@@ -8,7 +8,7 @@ export default class RegForm extends Component {
 
     componentDidMount() {
         const path = window.location.pathname.slice(1);
-        if (path === 'register'){
+        if (path === 'register') {
             this.setState({submitPass: true});
         }
     }
@@ -23,12 +23,17 @@ export default class RegForm extends Component {
             json[key] = value;
         });
 
-        fetch('/reg', {
+        console.log(JSON.stringify(json));
+        fetch('http://localhost:3001/reg', {
             method: 'POST',
-            body: JSON.stringify(json)
+            headers: new Headers({
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            }),
+            body: json
         })
-            .then(res=>res.json())
-            .then(res=>console.log(res));
+            .then(res => console.log(res))
+            .then(res => console.log(res));
 
 
     };
@@ -47,16 +52,16 @@ export default class RegForm extends Component {
                         </p>
                     </FormGroup>
                     <FormGroup row>
-                        <Label for="login" sm={3}>Login</Label>
+                        <Label for="username" sm={3}>Login</Label>
                         <Col sm={9}>
-                            <Input type="text" name="login" id="login"/>
+                            <Input type="text" name="username" id="login" defaultValue='Anton'/>
                         </Col>
                     </FormGroup>
 
                     <FormGroup row>
                         <Label for="pass1" sm={3}>Enter password</Label>
                         <Col sm={9}>
-                            <Input type="password" name="password" id="pass1"/>
+                            <Input type="password" name="password" id="pass1" defaultValue='111'/>
                         </Col>
                     </FormGroup>
 
