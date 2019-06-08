@@ -6,10 +6,19 @@ const Navbar = () => {
     return (
         <Nav>
             <NavItem className='mr-3'>
-                <Link to={'/login'}>login</Link>
+                <Link to={'/entering'}>Поступление</Link>
             </NavItem>
             <NavItem className='mr-3'>
-                <Link to={'/register'}>register</Link>
+                <Link to={'/documents'}>Мои документы</Link>
+            </NavItem>
+            <NavItem className='mr-3'>
+                <Link to={'/achievements'}>Достижения</Link>
+            </NavItem>
+            <NavItem className='mr-3'>
+                <Link to={'/profitability'}>Рентабельность</Link>
+            </NavItem>
+            <NavItem>
+                <Link to={'/development'}>Развитие</Link>
             </NavItem>
         </Nav>
     );

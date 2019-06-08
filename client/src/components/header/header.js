@@ -1,27 +1,52 @@
-import React from 'react';
-import {Container, Nav, NavItem} from "reactstrap";
-import styled from "styled-components";
+import React, {Component} from 'react';
+import {Container} from "reactstrap";
 import ProfileBlock from './profile-block';
 import Navbar from "./navbar";
-import {Link} from "react-router-dom";
+import {FlexWrapper,FlexWrapperStart} from "../elements/elements";
+import LogoTitle from "./logo-title";
+import burger from './images/burger.png';
+import styled from 'styled-components';
 
-const Wrapper = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+const Burger = styled.span`
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+  content: "";
+  background: no-repeat center center;
+  background-size: 100% 100%;
+  background-image: url(${burger});
+  cursor: pointer;
 `;
 
-const Header = ({logIn, logOut, isLogged, onAuth}) => {
-    return (
-        <div className='mb-5 mt-3'>
-            <Container>
-                <Wrapper>
-                    <Navbar/>
-                    <ProfileBlock logIn={() => onAuth(true)} logOut={() => onAuth(false)} isLogged={isLogged}/>
-                </Wrapper>
-            </Container>
-        </div>
-    );
-};
+export default class Header extends Component {
+    state = {
+        collapsed: true
+    };
 
-export default Header;
+    toggleNavbar = () => {
+        this.setState(state => ({
+            collapsed: !state.collapsed
+        }))
+    };
+
+    render() {
+        const {isLogged, onAuth} = this.props;
+        return (
+            <div className='mb-5 mt-3'>
+                <Container fluid>
+                    <FlexWrapper>
+                        <FlexWrapperStart>
+                            <Burger className='mr-3' onClick={this.toggleNavbar}/>
+                            <LogoTitle className='mr-3'/>
+                            <Navbar/>
+                        </FlexWrapperStart>
+                        <ProfileBlock logIn={() => onAuth(true)}
+                                      logOut={() => onAuth(false)}
+                                      isLogged={isLogged}/>
+                    </FlexWrapper>
+                </Container>
+            </div>
+        )
+    }
+}

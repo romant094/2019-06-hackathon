@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Route} from "react-router-dom";
-import {Container} from 'reactstrap';
+import {BrowserRouter as Router} from "react-router-dom";
 import Header from '../header';
 import MainService from "../../services";
-import RegForm from "../reg-form";
+import Main from '../main';
 
 export default class App extends Component {
     service = new MainService();
@@ -21,15 +20,6 @@ export default class App extends Component {
         this.onLogin();
     }
 
-    logIn = () => {
-        const isLogged = this.service.auth(true);
-        this.setState({isLogged: isLogged});
-    };
-    logOut = () => {
-        const isLogged = this.service.auth(false);
-        this.setState({isLogged: isLogged});
-    };
-
     onAuth = (param) => {
         const isLogged = this.service.auth(param);
         this.setState({isLogged: isLogged});
@@ -40,14 +30,9 @@ export default class App extends Component {
         return (
             <>
                 <Router>
-                    <Header onAuth={this.onAuth} logIn={this.logIn} logOut={this.logOut} isLogged={isLogged}/>
-
-                    <div>
-                        <Container>
-                            <Route path={'/register'} render={()=>(<RegForm/>)}/>
-                            <Route path={'/login'} render={()=>(<RegForm/>)}/>
-                        </Container>
-                    </div>
+                    <Header onAuth={this.onAuth}
+                            isLogged={isLogged}/>
+                    <Main/>
                 </Router>
             </>
         );
