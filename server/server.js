@@ -26,7 +26,7 @@ app.listen(port, () => {
 
 
 
-app.get('/auth', (req, res) => {
+app.post('/reg', (req, res) => {
   let data = {
     username: 'String',
     password: 'String',
@@ -45,27 +45,52 @@ app.post('/auth', (req, res) => {
     documents: [],
   }
   DB.push('UserCard',data)
-  res.json({});
+  res.sendStatus(200)
 });
 
 
 
-app.post('/reg', (req, res) => {
-  let data = {
-    username: 'String',
-    password: 'String',
-    documents: [],
-  }
-  DB.push('UserCard',data)
-  res.json({});
+app.get('/users', (req, res) => {
+
 });
 
 
 
+app.get('/users/:id', (req, res) => {
+
+});
+
+
+
+app.post('/users/:id/info', (req, res) => {
+
+});
+
+
+
+app.get('/unis', (req, res) => {
+
+});
+
+
+
+app.get('/unis/:id', (req, res) => {
+
+});
+
+
+
+app.get('/unis/filter', (req, res) => {
+
+});
+
+
+
+
 ///////////////////////////////////////////
 ///////////////////////////////////////////
 ///////////////////////////////////////////
 
 
-//
+
 module.exports = app;

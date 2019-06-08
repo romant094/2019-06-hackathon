@@ -10,13 +10,23 @@ class DB {
       id: ObjectId,
       username: String,
       password: String,
+      sex: String,
+      birthDate: String,
+      birthPlace: String,
+      country: String,
       documents: Array,
+      exams: Array,
     });
-    this.DocCard = new Schema({
+    this.UniCard = new Schema({
       id: ObjectId,
       username: String,
       password: String,
+      sex: String,
+      birthDate: String,
+      birthPlace: String,
+      country: String,
       documents: Array,
+      exams: Array,
     });
   }
 
@@ -30,25 +40,21 @@ class DB {
 
   push(collection, data) {
     const UserCardModel = mongoose.model(collection, this[collection]);
-    const kitty = new UserCardModel(data);
-    kitty.save().then(() => {
+    const model = new UserCardModel(data);
+    model.save().then(() => {
       console.log('added to', collection, data)
     });
   }
 
 
 
-  getSimilar(collection, id) {
-    const UserCardModel = mongoose.model(collection, this[collection]);
-    var dog = new Animal({ type: 'dog' });
-    dog.findSimilarTypes(function(err, dogs) {
-      console.log(dogs); // woof
-    });
+  change(collection, id) {
+
   }
 
 
 
-  getAll(collection) {
+  get(collection) {
 
   }
 
