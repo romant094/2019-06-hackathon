@@ -39,12 +39,20 @@ class DB {
 
 
   push(collection, data) {
-    const UserCardModel = mongoose.model(collection, this[collection]);
-    const model = new UserCardModel(data);
+    const CardModel = mongoose.model(collection, this[collection]);
+    const model = new CardModel(data);
     model.save().then(() => {
       console.log('added to', collection, data)
     });
   }
+
+
+
+  async check(collection, data) {
+    const CardModel = mongoose.model(collection, this[collection]);
+    return await CardModel.find(data);
+  }
+
 
 
 

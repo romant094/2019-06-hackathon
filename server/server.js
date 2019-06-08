@@ -2,8 +2,8 @@ const express = require('express');
 const axios = require('axios');
 require('dotenv').config();
 const bodyParser = require('body-parser');
-const dbModel = require('./db')
-const DB = new dbModel()
+const db = require('./db')
+const DB = new db()
 
 ///////////////////////////////////////////
 ///////////////////////////////////////////
@@ -12,6 +12,9 @@ const DB = new dbModel()
 const port = process.env.PORT;
 const app = express();
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 
 app.listen(port, () => {
@@ -26,26 +29,27 @@ app.listen(port, () => {
 
 
 
-app.post('/reg', (req, res) => {
-  let data = {
-    username: 'String',
-    password: 'String',
-    documents: [],
+app.post('/reg', async (req, res) => {
+  var result = await DB.check('UserCard',{username: req.body.username})
+  console.log(result)
+  if (result.length===0) {
+    DB.push('UserCard',req.body)
+    res.sendStatus(200)
+  } else {
+    res.sendStatus(403) // user exists
   }
-  DB.push('UserCard',data)
-  res.json({});
 });
 
 
 
-app.post('/auth', (req, res) => {
-  let data = {
-    username: 'String',
-    password: 'String',
-    documents: [],
+app.post('/auth', async (req, res) => {
+  var result = await DB.check('UserCard',req.body)
+  // console.log(result)
+  if (result.length===0) {
+    res.sendStatus(403)
+  } else {
+    res.sendStatus(200)
   }
-  DB.push('UserCard',data)
-  res.sendStatus(200)
 });
 
 
