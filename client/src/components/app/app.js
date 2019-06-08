@@ -1,58 +1,47 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
-import {Auth, ClosedPage} from '../pages'
+import {BrowserRouter as Router, Route} from "react-router-dom";
+// import {Auth, ClosedPage} from '../pages';
+import Header from '../header';
+import MainService from "../../services";
 
 export default class App extends Component {
+    service = new MainService();
+
     state = {
-        isLoggedIn: false
+        isLogged: false
     };
+
     onLogin = () => {
-        this.setState({isLoggedIn: true});
-        console.log('I logged in!')
+        const isLogged = localStorage.getItem('isLogged') === 'true';
+        this.setState({isLogged: isLogged});
+    };
+
+    componentDidMount() {
+        this.onLogin();
+    }
+
+    logIn = () => {
+        const isLogged = this.service.auth(true);
+        this.setState({isLogged: isLogged});
+    };
+    logOut = () => {
+        const isLogged = this.service.auth(false);
+        this.setState({isLogged: isLogged});
+    };
+
+    onAuth = (param) => {
+        const isLogged = this.service.auth(param);
+        this.setState({isLogged: isLogged});
     };
 
     render() {
-        const {isLoggedIn} = this.state;
+        const {isLogged} = this.state;
         return (
-            <div>
-                <header>
-                    Container
-                </header>
+            <>
                 <Router>
-                    <div>
-                        <Link to={'/'}>Start page</Link>
-                        <Link to={'/opened'}>Opened page</Link>
-                        <Link to={'/closed'}>Closed page</Link>
-                        {/*<Link to={'/login'}>login</Link>*/}
-                    </div>
-
-                    <div>
-                        <Route path={'/'} exact
-                               render={() => (
-                                   <h2>Welcome! <br/>
-                                       This is a simple example of auth
-                                   </h2>
-                               )}/>
-
-                        <Route path={'/opened'}
-                               render={() => (
-                                   <h2>opened content</h2>
-                               )}/>
-
-                        <Route path={'/closed'}
-                               render={() => (
-                                   <ClosedPage isLoggedIn={isLoggedIn}/>
-                               )}/>
-
-                        <Route path={'/login'}
-                               render={() => (
-                                   <Auth isLoggedIn={isLoggedIn}
-                                         onLogIn={this.onLogin}/>
-                               )}/>
-                    </div>
+                    <Header onAuth={this.onAuth} logIn={this.logIn} logOut={this.logOut} isLogged={isLogged}/>
                 </Router>
-
-            </div>
+            </>
         );
     }
 }
