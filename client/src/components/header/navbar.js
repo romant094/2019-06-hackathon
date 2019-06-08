@@ -6,13 +6,10 @@ const Navbar = () => {
     return (
         <Nav>
             <NavItem className='mr-3'>
-                <Link to={'/'}>Start page</Link>
+                <Link to={'/login'}>login</Link>
             </NavItem>
             <NavItem className='mr-3'>
-                <Link to={'/opened'}>Opened page</Link>
-            </NavItem>
-            <NavItem>
-                <Link to={'/closed'}>Closed page</Link>
+                <Link to={'/register'}>register</Link>
             </NavItem>
         </Nav>
     );

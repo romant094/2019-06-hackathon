@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route} from "react-router-dom";
-// import {Auth, ClosedPage} from '../pages';
+import {Container} from 'reactstrap';
 import Header from '../header';
 import MainService from "../../services";
+import RegForm from "../reg-form";
 
 export default class App extends Component {
     service = new MainService();
@@ -40,6 +41,13 @@ export default class App extends Component {
             <>
                 <Router>
                     <Header onAuth={this.onAuth} logIn={this.logIn} logOut={this.logOut} isLogged={isLogged}/>
+
+                    <div>
+                        <Container>
+                            <Route path={'/register'} render={()=>(<RegForm/>)}/>
+                            <Route path={'/login'} render={()=>(<RegForm/>)}/>
+                        </Container>
+                    </div>
                 </Router>
             </>
         );
