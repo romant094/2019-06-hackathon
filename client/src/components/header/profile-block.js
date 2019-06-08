@@ -5,6 +5,7 @@ import profileLogo from './images/profile-logo.png'
 
 const Wrapper = styled.div`
     display: flex
+    align-items: center;
 `;
 
 const Logo = styled.img`

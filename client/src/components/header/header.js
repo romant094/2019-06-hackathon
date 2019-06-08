@@ -1,8 +1,9 @@
 import React from 'react';
-import {Nav, NavItem, Container} from "reactstrap";
-import {Link} from "react-router-dom";
+import {Container, Nav, NavItem} from "reactstrap";
 import styled from "styled-components";
 import ProfileBlock from './profile-block';
+import Navbar from "./navbar";
+import {Link} from "react-router-dom";
 
 const Wrapper = styled.div`
     display: flex;
@@ -15,17 +16,7 @@ const Header = ({logIn, logOut, isLogged, onAuth}) => {
         <div className='mb-5 mt-3'>
             <Container>
                 <Wrapper>
-                    <Nav>
-                        <NavItem className='mr-3'>
-                            <Link to={'/'}>Start page</Link>
-                        </NavItem>
-                        <NavItem className='mr-3'>
-                            <Link to={'/opened'}>Opened page</Link>
-                        </NavItem>
-                        <NavItem>
-                            <Link to={'/closed'}>Closed page</Link>
-                        </NavItem>
-                    </Nav>
+                    <Navbar/>
                     <ProfileBlock logIn={() => onAuth(true)} logOut={() => onAuth(false)} isLogged={isLogged}/>
                 </Wrapper>
             </Container>
