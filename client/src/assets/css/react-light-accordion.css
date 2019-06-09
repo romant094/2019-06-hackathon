@@ -1,0 +1,91 @@
+.accordion .list-group-item{
+    padding: 0;
+}
+
+.accordion a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+}
+
+.close-button span:after{
+    display: block;
+    height: 13px;
+    width: 13px;
+    content: '\2795';
+    font-size: 13px;
+    color: #777;
+    transform: rotate(45deg);
+}
+.close-button:hover{
+    text-decoration: none;
+}
+
+.accordion a:hover {
+    background-color: #eee;
+    text-decoration: none;
+}
+
+.accordion .panel:hover {
+    background-color: #eee;
+}
+
+.accordion .panel:hover > .accordion a {
+    text-decoration: none;
+}
+
+.accordion .accordion-item .title {
+    background-color: #f6f6f6;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    -webkit-transition: 0.4s;
+    -o-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.accordion .accordion-item .title {
+    border-bottom: 1px solid #ccc;
+}
+
+.accordion .accordion-item:first-child .title {
+    border-top: 1px solid #ccc;
+}
+
+.accordion .accordion-item .panel {
+    max-height: 0;
+    -webkit-transition: max-height 0.15s ease-out;
+    -o-transition: max-height 0.15s ease-out;
+    transition: max-height 0.15s ease-out;
+    overflow: hidden;
+}
+
+.accordion .accordion-item.active .title {
+    background-color: #eee;
+}
+.accordion .accordion-item.active .title {
+    background-color: #eee;
+}
+
+.accordion .accordion-item.active .panel {
+    max-height: 500px;
+    -webkit-transition: max-height 0.25s ease-in;
+    -o-transition: max-height 0.25s ease-in;
+    transition: max-height 0.25s ease-in;
+}
+
+.accordion-wrapper{
+    position: relative;
+}
+
+.accordion-wrapper .close-button{
+    position: absolute;
+    top: -44px;
+    right: 7px;
+}
+/*# sourceMappingURL=index.css.map*/

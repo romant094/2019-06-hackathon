@@ -4,8 +4,10 @@ import ProfileBlock from './profile-block';
 import Navbar from "./navbar";
 import {FlexWrapper,FlexWrapperStart} from "../elements/elements";
 import LogoTitle from "./logo-title";
+import SideModal from "./side-modal";
 import burger from './images/burger.png';
 import styled from 'styled-components';
+
 
 const Burger = styled.span`
   display: inline-block;
@@ -21,13 +23,17 @@ const Burger = styled.span`
 
 export default class Header extends Component {
     state = {
-        collapsed: true
+        collapsed: false
     };
 
     toggleNavbar = () => {
         this.setState(state => ({
             collapsed: !state.collapsed
         }))
+    };
+
+    onCloseModal = () => {
+        this.toggleNavbar();
     };
 
     render() {
@@ -46,6 +52,7 @@ export default class Header extends Component {
                                       isLogged={isLogged}/>
                     </FlexWrapper>
                 </Container>
+                {this.state.collapsed ? <SideModal onCloseModal={this.onCloseModal}/> : null}
             </div>
         )
     }
