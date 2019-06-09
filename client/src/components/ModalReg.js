@@ -53,16 +53,8 @@ class ModalReg extends Component {
             </Form.Group>
             <Divider horizontal>ИЛИ</Divider>
             <Form.Field>
-              <label>Фамилия</label>
-              <input placeholder='Фамилия' />
-            </Form.Field>
-            <Form.Field>
-              <label>Имя</label>
-              <input placeholder='Имя' />
-            </Form.Field>
-            <Form.Field>
-              <label>Отчество</label>
-              <input placeholder='Отчество' />
+              <label>Логин</label>
+              <input placeholder='Логин' />
             </Form.Field>
             <Form.Field>
               <label>Пароль</label>

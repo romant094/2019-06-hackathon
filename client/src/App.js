@@ -53,7 +53,7 @@ class App extends Component {
 
 
     return (
-      <div className="App" style={st.bg}>
+      <div className="App">
 
 
         {/* Menu */}

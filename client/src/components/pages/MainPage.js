@@ -30,13 +30,6 @@ class MainPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      allTickets: [],
-      ticketType: 'econom',
-      origin: 'LED',
-      destination: 'SVO',
-      dateFront: '',
-      dateBack: '',
-      time: '',
       dateTime: '',
       datesRange: '',
       passengers: 1,
