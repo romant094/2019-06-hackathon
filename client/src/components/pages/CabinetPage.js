@@ -10,6 +10,7 @@ import { withCookies } from 'react-cookie';
 //
 import {cols, st} from '../../styles/style'
 import * as PagesAndComponents from '../'
+import styled from 'styled-components';
 
 /////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////
@@ -23,6 +24,16 @@ TODO:
 /////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////
 
+const CustomCard = styled(Card)`
+  height: 100%;
+  text-align: center;
+  
+  .content{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+`;
 
 class CabinetPage extends Component {
   constructor(props) {
@@ -297,9 +308,118 @@ class CabinetPage extends Component {
       pane: {
         key: 'tab3',
         content: (
-          <div>
-            This tab contains an <Label>JSX</Label> element
-          </div>
+            <div>
+              <Container>
+                <Grid>
+                  <Grid.Row columns={4} className='equal height'>
+                    <Grid.Column>
+                      <CustomCard>
+                        <Card.Content>
+                          <Card.Description style={{marginBottom: '10px'}}>
+                            Ваш общий балл ЕГЭ
+                          </Card.Description>
+                          <Card.Header>
+                            <Header as='h1'>
+                              389
+                            </Header>
+                          </Card.Header>
+                          <Card.Description>
+                            <Dropdown text='Расшифровка' style={{marginBottom: '10px'}}>
+                              <Dropdown.Menu>
+                                <Dropdown.Item text='Математика' description='20'/>
+                                <Dropdown.Item text='Физика' description='14'/>
+                                <Dropdown.Item text='Химия' description='41'/>
+                                <Dropdown.Item text='Русский язык' description='17'/>
+                              </Dropdown.Menu>
+                            </Dropdown>
+                          </Card.Description>
+                          <Card.Description>
+                            <Button>Подать документы</Button>
+                          </Card.Description>
+                        </Card.Content>
+                      </CustomCard>
+                    </Grid.Column>
+                    <Grid.Column>
+                      <CustomCard>
+                        <Card.Content>
+                          <Card.Description style={{marginBottom: '10px'}}>
+                            Вы подали заявления в
+                          </Card.Description>
+                          <Card.Header>
+                            <Header as='h1'>
+                              4
+                            </Header>
+                          </Card.Header>
+                          <Card.Description style={{marginBottom: '10px'}}>
+                            ВУЗа <br/> на
+                          </Card.Description>
+
+                          <Card.Header>
+                            <Header as='h1'>
+                              20
+                            </Header>
+                          </Card.Header>
+                          <Card.Description style={{marginBottom: '10px'}}>
+                            специальностей
+                          </Card.Description>
+                          <Card.Description>
+                            <Button>Подать еще</Button>
+                          </Card.Description>
+                        </Card.Content>
+                      </CustomCard>
+                    </Grid.Column>
+                    <Grid.Column>
+                      <CustomCard>
+                        <Card.Content>
+                          <Card.Description style={{marginBottom: '10px'}}>
+                            У вас
+                          </Card.Description>
+                          <Card.Header>
+                            <Header as='h1'>
+                              20
+                            </Header>
+                          </Card.Header>
+                          <Card.Description style={{marginBottom: '10px'}}>
+                            медалей
+                          </Card.Description>
+                          <Card.Header>
+                            <Header as='h1'>
+                              4
+                            </Header>
+                          </Card.Header>
+                          <Card.Description style={{marginBottom: '10px'}}>
+                            грамоты
+                          </Card.Description>
+                          <Card.Description>
+                            <Button>Добавить</Button>
+                          </Card.Description>
+                        </Card.Content>
+                      </CustomCard>
+                    </Grid.Column>
+                    <Grid.Column>
+                      <CustomCard>
+                        <Card.Content>
+                          <Card.Description style={{marginBottom: '10px'}}>
+                            Ваш рейтинг
+                          </Card.Description>
+                          <Card.Header>
+                            <Header as='h1'>
+                              8
+                            </Header>
+                          </Card.Header>
+                          <Card.Description style={{marginBottom: '10px'}}>
+                            из 10
+                          </Card.Description>
+                          <Card.Description>
+                            <Button>Как повысить?</Button>
+                          </Card.Description>
+                        </Card.Content>
+                      </CustomCard>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid>
+              </Container>
+            </div>
         ),
       },
     },
