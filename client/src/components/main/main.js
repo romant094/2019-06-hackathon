@@ -1,6 +1,7 @@
 import React from 'react';
 import {Route} from "react-router-dom";
 import {Container} from 'reactstrap';
+import RegForm from '../reg-form';
 
 const Main = () => {
     return (
@@ -12,6 +13,7 @@ const Main = () => {
                 <Route path={'/entering'} render={() => (<h2>Поступление</h2>)}/>
                 <Route path={'/profitability'} render={() => (<h2>Рентабельность образования</h2>)}/>
                 <Route path={'/development'} render={() => (<h2>Траектория развития</h2>)}/>
+                <Route path={'/reg'} render={() => (<RegForm/>)}/>
             </Container>
         </main>
     );
