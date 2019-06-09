@@ -121,7 +121,7 @@ class MainMenu extends Component {
 
         {/*TODO: mobile: hide dropdown after touch*/}
         <Menu
-          borderless size='big'
+          borderless
           // fixed={menuFixed ? 'top' : undefined}
           fixed={'top'}
           // style={menuFixed ? fixedMenuStyle : menuStyle}
