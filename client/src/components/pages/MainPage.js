@@ -35,102 +35,83 @@ class MainPage extends Component {
       passengers: 1,
       activeIndex: 0,
       items: 'items',
+      filter: '',
+      cards: [
+          {
+            id: 1,
+            type: 'mat',
+            text: 'Материал 1'
+          },
+          {
+            id: 2,
+            type: 'izb',
+            text: 'Избранное 1'
+          },
+          {
+            id: 3,
+            type: 'rec',
+            text: 'Рекомендация 2'
+          },
+          {
+            id: 4,
+            type: 'rec',
+            text: 'Рекомендация 3'
+          },
+          {
+            id: 5,
+            type: 'mat',
+            text: 'Материал 2'
+          },
+          {
+            id: 6,
+            type: 'mat',
+            text: 'Материал 3'
+          },
+          {
+            id: 7,
+            type: 'izb',
+            text: 'Избранное 3'
+          }
+      ]
     };
     this.getPrices = this.getPrices.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-  //
-  handleClick = (e, titleProps) => {
-    const { index } = titleProps
-    const { activeIndex } = this.state
-    const newIndex = activeIndex === index ? -1 : index
 
-    this.setState({ activeIndex: newIndex })
-  }
-  handleClickBtn = async () => {
-    await this.props.getPrices(this.state)
-    console.log('Button',this.props)
-  }
-  //
   render() {
-    const {
-      allTickets,
-      origin,
-      destination,
-      dateBack,
-      dateFront,
-      passengers,
-      activeIndex,
-      ticketType,
-      userName,
-    } = this.state
+    const cards = this.state.cards.map(item=>(
+        <Card key={item.id}>
+          <Card.Content>
+            <Card.Header>
+              {item.text}
+            </Card.Header>
+            <Card.Description>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, totam?
+            </Card.Description>
+          </Card.Content>
+        </Card>
+    ));
 
     return (
-      <div className="App-body" style={{}}>
-
-
-        <Container style={{padding:'5em', margin:'1em'}}>
-
-
-          <Card.Group centered>
-
-            <Card
-              href='/'
-              style={{...st.bgImageCard}}
-            >
-              <Card.Content>
-                <Card.Header style={{...{color:'white'},...st.tar}}>Выбрать ВУЗ и подать документы онлайн</Card.Header>
-                <Card.Description style={st.w}>
-
-                </Card.Description>
-              </Card.Content>
-              <Card.Content extra>
-                <Card.Header style={{...st.w,...st.tal}}></Card.Header>
-              </Card.Content>
-              <Card.Content extra>
-              </Card.Content>
-            </Card>
-
-
-            <Card
-              href='/'
-              style={{...st.bgImageCard}}
-            >
-              <Card.Content>
-                <Card.Header style={{...{color:'white'},...st.tar}}>Где можно учиться по обмену</Card.Header>
-              </Card.Content>
-            </Card>
-
-            <Card
-              href='/'
-              style={{...st.bgImageCard}}
-            >
-              <Card.Content>
-                <Card.Header style={{...{color:'white'},...st.tar}}>Университеты Санкт-Петербурга</Card.Header>
-                <Card.Description style={st.w}>
-
-                </Card.Description>
-              </Card.Content>
-              <Card.Content extra>
-                <Card.Header style={{...st.w,...st.tal}}></Card.Header>
-              </Card.Content>
-              <Card.Content extra>
-              </Card.Content>
-            </Card>
-
-          </Card.Group>
-          <Button
-            style={{...st.btnShadow, ...st.txtShadow2,...{marginTop: '1em'}}}
-            content='Еще варианты'
-            color='teal' fluid
-            // onClick={this.handleClickBtn()}
-          />
-
-        </Container>
-
-
-
-      </div>
+        <div style={{paddingTop: '70px'}}>
+          <Container>
+            <Grid>
+              <Grid.Row>
+                <Button>Все</Button>
+                <Button>Материалы и программы</Button>
+                <Button>Избранное</Button>
+                <Button>Рекомендации</Button>
+              </Grid.Row>
+            </Grid>
+          </Container>
+          <Container>
+            <Grid>
+              <Grid.Row columns={3}>
+                {cards}
+              </Grid.Row>
+            </Grid>
+          </Container>
+        </div>
     );
   }
 
@@ -149,40 +130,77 @@ class MainPage extends Component {
     o[n] = e.target.value
     this.setState(o);
   }
-
-
-  handleChangeCalendar = (event, {name, value}) => {
-    if (this.state.hasOwnProperty(name)) {
-      this.setState({ [name]: value });
-    }
-  }
-
-  dateToLocal = (d) => {
-    var dateOpts = { year: 'numeric', month: 'long', day: 'numeric' }
-    return new Date(d).toLocaleDateString('ru-RU',dateOpts)
-  }
-
-  componentWillMount = async () => {
-    // let { dispatch } = this.props
-    // this.props.getPrices(this.state)
-    // this.props.getPricesRes('cascasc')
-    await this.props.getPrices(this.state)
-    this.setState({allTickets:this.props.items})
-    // let tickets1 = await dispatch(Acts.getPrices(this.state))
-    console.log('componentWillMount props',this.props)
-    // console.log('componentWillMount store',this.props.items)
-    // console.log('componentWillMount tickets',tickets)
-    // console.log('componentWillMount store',store.getState())
-    // console.log('componentWillMount tickets1',tickets1)
-    // console.log('componentWillMount state',this.state)
-    // this.setState({allTickets:tickets})
-    // console.log('cookies before',this.props.cookies)
-    // this.props.cookies.set('name', 'Boris', { path: browserHistory.getCurrentLocation().pathname })
-    // console.log('cookies after',this.props.cookies.get('name'))
-    if (this.props.cookies.get('name')) this.setState({userName:this.props.cookies.get('name')})
-  }
-
 }
+
+const oldMainPage = () => {
+  return(
+      <div className="App-body" style={{}}>
+
+
+        <Container style={{padding:'5em', margin:'1em'}}>
+
+
+          <Card.Group centered>
+
+            <Card
+                href='/'
+                style={{...st.bgImageCard}}
+            >
+              <Card.Content>
+                <Card.Header style={{...{color:'white'},...st.tar}}>Выбрать ВУЗ и подать документы онлайн</Card.Header>
+                <Card.Description style={st.w}>
+
+                </Card.Description>
+              </Card.Content>
+              <Card.Content extra>
+                <Card.Header style={{...st.w,...st.tal}}></Card.Header>
+              </Card.Content>
+              <Card.Content extra>
+              </Card.Content>
+            </Card>
+
+
+            <Card
+                href='/'
+                style={{...st.bgImageCard}}
+            >
+              <Card.Content>
+                <Card.Header style={{...{color:'white'},...st.tar}}>Где можно учиться по обмену</Card.Header>
+              </Card.Content>
+            </Card>
+
+            <Card
+                href='/'
+                style={{...st.bgImageCard}}
+            >
+              <Card.Content>
+                <Card.Header style={{...{color:'white'},...st.tar}}>Университеты Санкт-Петербурга</Card.Header>
+                <Card.Description style={st.w}>
+
+                </Card.Description>
+              </Card.Content>
+              <Card.Content extra>
+                <Card.Header style={{...st.w,...st.tal}}></Card.Header>
+              </Card.Content>
+              <Card.Content extra>
+              </Card.Content>
+            </Card>
+
+          </Card.Group>
+          <Button
+              style={{...st.btnShadow, ...st.txtShadow2,...{marginTop: '1em'}}}
+              content='Еще варианты'
+              color='teal' fluid
+              // onClick={this.handleClickBtn()}
+          />
+
+        </Container>
+
+
+
+      </div>
+  )
+};
 
 
 /////////////////////////////////////////////////////////
